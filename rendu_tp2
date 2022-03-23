@@ -1,0 +1,31 @@
+3. L'encodage du fichier est en CSV
+
+4.  wc 20200423-062902-metrics-daily.csv
+result : 1037788   1037788 102429832 20200423-062902-metrics-daily.csv
+1037788 is the number of line (or words)  102429832 is the number of octet
+
+ls -l
+
+On retrouve la même taille de fichier.
+
+5. Les données sont organisées en CSV
+Les colonnes sont : name,time,HMDT,LUMI,TEMP,id,location,type
+
+6. Pour savoir si un capteur est mobile il faut regarder dans la colonne location s>First we use grep command with the parameter -i (in order to a have a case insensit>grep will return all the line where there are the "Mobile" word.
+Then  we count the number of line return by using wc.
+
+grep -i "Mobile" 20200423-062902-metrics-daily.csv | wc
+
+Result : 834
+
+7.
+
+sort -u -t "," -k6  20200423-062902-metrics-daily.csv 
+
+The id is the 6 column.
+
+Principales options :
+-b : Option à utiliser lorsque le critère de tri est alphanumérique et que les valeurs dans les champs sont calés à droite et complétés avec des espaces à gauche
+-k : champ [.car] [options] , champ [.car] [options] Spécifier le ou les champs à prendre en compte en tant que critère de tri. Le critère de tri peut commencer ou finir à une certaine position de caractère du champ.
+-t sep : Préciser le caractère séparateur de champs (espace par défaut)
+-u : Suppression des doublons
