@@ -67,3 +67,13 @@ date -d @$date_dernier_sensor +'%Y-%m-%d %H:%M:%S'
 
 result 
 2473-02-03 21:50:56  
+
+D'abord on liste tous les capteurs avec la commande suivante :
+sort -u -t "," -k6  "20200423-062902-metrics-daily.csv" | cut -d "," -f6 | head -n -1      
+
+grep 03f5ca58-aa70-47b3-980c-c8f486cac9ee   20200423-062902-metrics-daily.csv | cut -d "," -f2,3,4,5,6,7 
+
+
+3.1 : scriptOne
+3.2 : scriptTwo
+
