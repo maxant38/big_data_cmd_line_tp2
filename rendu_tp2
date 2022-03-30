@@ -52,8 +52,18 @@ Partie 2
 format de la date : 1587529745754514305
 Les dates dans le fichier que vous manipulez sont données en nanosecondes écoulées depuis Epoch
 
+Il faut donc enlever les 9 derniers chiffres. 
 
+pour le premier enregistrement 
+date_premier_sensor=$(head -n3 20200423-062902-metrics-daily.csv | tail -1 |  cut -d ',' -f 2 | rev | cut -c 9- |rev)
+date -d @$date_premier_sensor +'%Y-%m-%d %H:%M:%S'
 
+result 
+2473-01-24 21:50:59  
 
+pour le dernier enregistrment 
+date_dernier_sensor=$(tail -n1 20200423-062902-metrics-daily.csv | cut -d ',' -f 2 | rev | cut -c 9- |rev)
+date -d @$date_dernier_sensor +'%Y-%m-%d %H:%M:%S'
 
-
+result 
+2473-02-03 21:50:56  
