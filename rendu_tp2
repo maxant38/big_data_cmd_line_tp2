@@ -1,4 +1,6 @@
-3. L'encodage du fichier est en CSV
+3. L'encodage du fichier est en CSV . file -i 
+réponse: 
+20200423-062902-metrics-daily.csv: application/csv; charset=us-ascii  
 
 4.  wc 20200423-062902-metrics-daily.csv
 result : 1037788   1037788 102429832 20200423-062902-metrics-daily.csv
@@ -20,12 +22,35 @@ Result : 834
 
 7.
 
-sort -u -t "," -k6  20200423-062902-metrics-daily.csv 
+sort -u -t "," -k6  20200423-062902-metrics-daily.csv | cut -d, -f6 | head -n -1   
 
-The id is the 6 column.
+The id is in the 6 column.
 
 Principales options :
 -b : Option à utiliser lorsque le critère de tri est alphanumérique et que les valeurs dans les champs sont calés à droite et complétés avec des espaces à gauche
 -k : champ [.car] [options] , champ [.car] [options] Spécifier le ou les champs à prendre en compte en tant que critère de tri. Le critère de tri peut commencer ou finir à une certaine position de caractère du champ.
 -t sep : Préciser le caractère séparateur de champs (espace par défaut)
 -u : Suppression des doublons
+
+cut : pour avoir uniquement la colonne des id
+head: enlever la colonne d'en tête
+
+response :
+
+8.
+
+grep -i "Mobile" 20200423-062902-metrics-daily.csv > "dataToUse.csv"
+sort -u -t "," -k6  "dataToUse.csv" | cut -d, -f6 | head -n -1 
+
+result :
+3bfad906-c282-4bf3-9227-cd28259d6b9d
+8a3f92cf-aebf-43b5-9c9e-7f1862584a6c
+8c1a3d81-82bc-40d7-9b77-1b2e5abe151c
+
+9.
+
+
+
+
+
+
